@@ -16,11 +16,14 @@ def get_genai_client():
 
 client = get_genai_client()
 
-# Initialize Chat Session with 2026 System Instructions
+# Initialize Chat Session with 2026 System Instructions AND Live Google Search
 if "chat_session" not in st.session_state:
     st.session_state.chat_session = client.chats.create(
         model="gemini-2.5-flash",
-        config={"system_instruction": "You are a helpful assistant. The current year is 2026."}
+        config={
+            "system_instruction": "You are a helpful assistant. The current year is 2026.",
+            "tools": [{"google_search": {}}]  # This enables live internet search!
+        }
     )
 
 if "messages" not in st.session_state:
