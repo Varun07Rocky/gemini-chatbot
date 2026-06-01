@@ -4,7 +4,7 @@ import os
 
 # Set up the web page
 st.set_page_config(page_title="Gemini AI Chatbot", page_icon="🤖", layout="centered")
-st.title("🤖 My Gemini AI Chatbot")
+st.title("🤖 VAARIS")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
 # Initialize the Gemini Client using the secure secret key we saved
