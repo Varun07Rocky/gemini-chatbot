@@ -2,7 +2,6 @@ import streamlit as st
 from google import genai
 import os
 
-# Set up the web page
 # Set up the web page cleanly
 st.set_page_config(
     page_title="Vaaris AI Chatbot - Personal AI Assistant", 
@@ -10,10 +9,6 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🤖 VAARIS")
-    f'<meta name="google-site-verification" content="raNnvSyzWIeR57e72376cvubq3WpxMbgWz0NCQmi5x0" />', 
-    unsafe_allow_html=True
-)
 st.title("🤖 VAARIS")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
@@ -31,7 +26,7 @@ if "chat_session" not in st.session_state:
     st.session_state.chat_session = client.chats.create(
         model="gemini-2.5-flash",
         config={
-            "system_instruction": "You are a helpful assistant. The current year is 2026.",
+            "system_instruction": "Your name is Vaaris. You are a helpful AI assistant. The current year is 2026.",
             "tools": [{"google_search": {}}]  # This enables live internet search!
         }
     )
