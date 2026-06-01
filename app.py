@@ -19,7 +19,12 @@ client = get_genai_client()
 # 2. Initialize Chat Session in Streamlit's Memory
 if "chat_session" not in st.session_state:
     # This starts a continuous conversation tracking session
-    st.session_state.chat_session = client.chats.create(model="gemini-2.5-flash")
+    if "chat_session" not in st.session_state:
+    # Add system instructions so the bot knows the true current date
+    st.session_state.chat_session = client.chats.create(
+        model="gemini-2.5-flash",
+        config={"system_instruction": "You are a helpful assistant. The current year is 2026."}
+    )
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
