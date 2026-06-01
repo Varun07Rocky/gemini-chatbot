@@ -3,7 +3,18 @@ from google import genai
 import os
 
 # Set up the web page
-st.set_page_config(page_title="Vaaris AI Chatbot - Personal AI Assistant", page_icon="🤖", layout="centered")
+# Set up the web page with Search Console meta tag tracking
+st.set_page_config(
+    page_title="Vaaris AI Chatbot - Personal AI Assistant", 
+    page_icon="🤖", 
+    layout="centered"
+)
+
+# This injects the Google verification tag cleanly into the header
+st.markdown(
+    f'<meta name="google-site-verification" content="raNnvSyzWIeR57e72376cvubq3WpxMbgWz0NCQmi5x0" />', 
+    unsafe_allow_html=True
+)
 st.title("🤖 VAARIS")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
