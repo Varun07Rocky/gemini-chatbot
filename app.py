@@ -1,14 +1,14 @@
 import streamlit as st
 from google import genai
+import os
 
 # Set up the web page
 st.set_page_config(page_title="Gemini AI Chatbot", page_icon="🤖", layout="centered")
 st.title("🤖 My Gemini AI Chatbot")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
-# 1. Initialize the Gemini Client
-# For security, you can pull your key from your AI Studio dashboard:
-API_KEY = "AQ.Ab8RN6I8nXiZ4VOBXZ4KZwqstROlP5ffQxp1QgFZYVOTQhbqWg" 
+# Initialize the Gemini Client using the secure secret key we saved
+API_KEY = os.environ.get("GEMINI_API_KEY")
 
 @st.cache_resource
 def get_genai_client():
@@ -16,9 +16,8 @@ def get_genai_client():
 
 client = get_genai_client()
 
-# 2. Initialize Chat Session in Streamlit's Memory
+# Initialize Chat Session with 2026 System Instructions
 if "chat_session" not in st.session_state:
-   
     st.session_state.chat_session = client.chats.create(
         model="gemini-2.5-flash",
         config={"system_instruction": "You are a helpful assistant. The current year is 2026."}
@@ -27,24 +26,21 @@ if "chat_session" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 3. Display Chat History on Re-run
+# Display Chat History on Re-run
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# 4. Handle New User Input
+# Handle New User Input
 if user_input := st.chat_input("Type your message here..."):
-    # Display user message instantly
     with st.chat_message("user"):
         st.markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
     
-    # Generate response from Gemini
     with st.chat_message("assistant"):
         response_placeholder = st.empty()
         with st.spinner("Thinking..."):
             try:
-                # Send the message using the active session tracking
                 response = st.session_state.chat_session.send_message(user_input)
                 response_placeholder.markdown(response.text)
                 st.session_state.messages.append({"role": "assistant", "content": response.text})
