@@ -3,7 +3,7 @@ from google import genai
 import os
 
 # Set up the web page
-st.set_page_config(page_title="Gemini AI Chatbot", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="Vaaris AI Chatbot - Personal AI Assistant", page_icon="🤖", layout="centered")
 st.title("🤖 VAARIS")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
