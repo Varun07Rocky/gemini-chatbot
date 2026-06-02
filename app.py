@@ -13,7 +13,7 @@ st.title("🤖 VAARIS")
 st.caption("A sleek web app built with Streamlit and Google GenAI SDK")
 
 # Initialize the Gemini Client using the secure secret key we saved
-API_KEY = os.environ.get("AQ.Ab8RN6J9HRe9hJFQQSg2Z0P9SNXEuClyOflPlqHqS92jkWW2iw")
+API_KEY = os.environ.get("AQ.Ab8RN6Jx2lfVyk6Tk6osxNYVsWUg8oYKfgMqR5LhlpEy3clltA")
 
 @st.cache_resource
 def get_genai_client():
